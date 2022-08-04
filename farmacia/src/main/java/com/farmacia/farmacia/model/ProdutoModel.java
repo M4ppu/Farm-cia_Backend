@@ -1,5 +1,7 @@
 package com.farmacia.farmacia.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,12 +26,20 @@ public class ProdutoModel {
 	@Size(min = 5, max = 100, message = "O item deve conter no mínimo 05 e no máximo 100 caracteres")
 	private String item;
 	
-	@NotNull
-	private double preco;
+	@Positive(message = "Digite um valor maior do que zero")
+	private BigDecimal preco;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private CategoriaModel categoria;
+	
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
+	}
 
 	public Long getId() {
 		return id;
@@ -47,13 +57,6 @@ public class ProdutoModel {
 		this.item = item;
 	}
 
-	public double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
 
 	public CategoriaModel getCategoria() {
 		return categoria;

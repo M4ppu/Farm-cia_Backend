@@ -1,5 +1,6 @@
 package com.farmacia.farmacia.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -41,6 +42,11 @@ public class ProdutoController {
 	@GetMapping("/item/{item}")
 	public ResponseEntity<List<ProdutoModel>> GetByTitulo(@PathVariable String item){
 		return ResponseEntity.ok(repository.findAllByItemContainingIgnoreCase(item));
+	}
+	
+	@GetMapping("preco_inicial/{inicio}/preco_final/{final}")
+	public ResponseEntity<List<ProdutoModel>> getByPrecoEntre(@PathVariable BigDecimal inicio, @PathVariable BigDecimal fim){
+		return ResponseEntity.ok(repository.findAllByPrecoContainingIgnoreCase(inicio, fim));
 	}
 	
 	@PostMapping
