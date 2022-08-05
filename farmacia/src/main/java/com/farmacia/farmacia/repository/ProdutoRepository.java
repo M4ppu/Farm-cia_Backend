@@ -11,7 +11,7 @@ import com.farmacia.farmacia.model.ProdutoModel;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<ProdutoModel, Long>{
-	public List<ProdutoModel> findAllByPrecoContainingIgnoreCase (@Param("inicio") BigDecimal inicio, @Param("fim") BigDecimal fim);
+	public List<ProdutoModel> findAllByPrecoBetween (@Param("inicio") BigDecimal inicio, @Param("fim") BigDecimal fim);
 
 	public List<ProdutoModel> findAllByItemContainingIgnoreCase(@Param ("item")String item);
 }
