@@ -44,7 +44,7 @@ public class ProdutoController {
 		return ResponseEntity.ok(repository.findAllByItemContainingIgnoreCase(item));
 	}
 	
-	@GetMapping("preco_inicial/{inicio}/preco_final/{final}")
+	@GetMapping("preco_inicial/{inicio}/preco_final/{fim}")
 	public ResponseEntity<List<ProdutoModel>> getByPrecoEntre(@PathVariable BigDecimal inicio, @PathVariable BigDecimal fim){
 		return ResponseEntity.ok(repository.findAllByPrecoBetween(inicio, fim));
 	}
